@@ -16,4 +16,18 @@
     <ProjectReference Include="..\Communication\Communication.csproj" />
   </ItemGroup>
 
+    <Target Name="CopyDLLs" AfterTargets="Build">
+    <Message Text="Executing CopyDLLs task" Importance="High" />
+
+    <Copy
+      SourceFiles="$(TargetDir)$(ProjectName).dll;$(TargetDir)$(ProjectName).pdb"
+      DestinationFolder="D:\GameDev\FibulaGame\Assets\FibulaClient"
+    />
+    <Copy
+      SourceFiles="$(TargetDir)Communication.dll;$(TargetDir)Communication.pdb"
+      DestinationFolder="D:\GameDev\FibulaGame\Assets\FibulaClient"
+    />
+    <Message Text="Copied build files" Importance="High" />
+  </Target>
+
 </Project>

@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using System.Text;
 using WatsonWebsocket;
 
-namespace Client;
+namespace Fibula.Client;
 
 public class Client
 {
