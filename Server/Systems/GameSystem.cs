@@ -1,4 +1,6 @@
-﻿namespace Server.Systems;
+﻿using Communication.Data;
+
+namespace Server.Systems;
 
 internal interface IGameSystem
 {

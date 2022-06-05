@@ -1,4 +1,5 @@
 ﻿using Communication;
+using Communication.Data;
 
 namespace Server.Systems;
 

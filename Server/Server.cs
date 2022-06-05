@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Communication.Data;
+using Newtonsoft.Json;
 using System.Text;
 using WatsonWebsocket;
 
@@ -28,9 +29,7 @@ namespace Server
 
         public void OnGameStateChanged(GameState gameState)
         {
-            var json = JsonConvert.SerializeObject(gameState);
-
-            Broadcast(json);
+            Broadcast("game-state", gameState);
         }
 
         private void ClientConnected(object sender, ClientConnectedEventArgs args)
@@ -50,10 +49,12 @@ namespace Server
             Console.WriteLine("Message received from " + args.IpPort + ": " + Encoding.UTF8.GetString(args.Data));
         }
 
-        private void Broadcast(string json)
+        private void Broadcast(string message, object payload)
         {
+            var json = JsonConvert.SerializeObject(payload);
+            
             foreach (var client in clients) {
-                webSocketServer.SendAsync(client, json);
+                webSocketServer.SendAsync(client, $"{message};{payload}");
             }
         }
     }
